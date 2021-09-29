@@ -469,6 +469,8 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             }
         }
     }
+    MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Starting autobright logic device_value: %d min: %d max: %d",device_value, parm_min, parm_max);
+
     /* If we can not find control just give up */
     if (device_value == -1) {
         return 0;
