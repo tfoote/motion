@@ -520,7 +520,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
         MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Up Avg %d target: %d step: %d device:%d",avg,target,step,device_value);
     }
 
-    if (make_change) {
+    if (make_change || TRUE) {
         for (indx = 0;indx < curdev->devctrl_count; indx++) {
             devitem=&curdev->devctrl_array[indx];
             if ((method == 1) && (devitem->ctrl_id == V4L2_CID_BRIGHTNESS)) {
