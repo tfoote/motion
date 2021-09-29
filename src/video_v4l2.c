@@ -528,9 +528,12 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             } else if ((method == 2) && (devitem->ctrl_id == V4L2_CID_EXPOSURE)) {
                 devitem->ctrl_newval = device_value;
             } else if ((method == 3) && (devitem->ctrl_id == V4L2_CID_EXPOSURE_ABSOLUTE)) {
+                MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Setting device_value: %d",device_value);
                 devitem->ctrl_newval = device_value;
             }
         }
+    } else {
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "No change executed device_value: %d",device_value);
     }
 
     return 0;
