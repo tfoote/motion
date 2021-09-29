@@ -415,8 +415,8 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
     }
 
     /* Set the values for the control variables */
-    parm_hysteresis = 100;
-    parm_damper = 200;
+    parm_hysteresis = 100; //TODO(tfoote) 20 histeressis was not adaquate for this on Brio 4k
+    parm_damper = 200; //TODO(tfoote) needed a lot of damping to wait for Logitech Brio lag responding (almost 10 frames)
     parm_max = 255;
     parm_min = 0;
 
@@ -443,6 +443,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
                target = atoi(usritem->param_value);
         }
     }
+    //TODO(tfoote) The above doesn't seem to set the target, the units below are suspect but seem to work.
 
     device_value = -1;
     for (indx = 0;indx < curdev->devctrl_count; indx++) {
@@ -520,6 +521,9 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
         MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Up Avg %d target: %d step: %d device:%d",avg,target,step,device_value);
     }
 
+    /* TODO(tfoote) With logitech Brio if you don't set the value it goes to 250
+     * Forcing TRUE here fixes the issue
+     */
     if (make_change || TRUE) {
         for (indx = 0;indx < curdev->devctrl_count; indx++) {
             devitem=&curdev->devctrl_array[indx];
