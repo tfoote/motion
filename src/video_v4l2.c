@@ -428,7 +428,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
 
     for (indx = 0;indx < cnt->vdev->params_count; indx++) {
         usritem=&cnt->vdev->params_array[indx];
-        // MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Name: %s Value %s", usritem->param_name, usritem->param_value);
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Name: %s Value %s", usritem->param_name, usritem->param_value);
         if ((method == 1) &&
             ((mystrceq(usritem->param_name,"brightness")) ||
              (mystrceq(usritem->param_name,cid_bright)))) {
@@ -447,7 +447,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
     device_value = -1;
     for (indx = 0;indx < curdev->devctrl_count; indx++) {
         devitem=&curdev->devctrl_array[indx];
-        // MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "id: %d min: %d max: %d current: %d", devitem->ctrl_id, devitem->ctrl_minimum, devitem->ctrl_maximum, devitem->ctrl_currval);
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "id: %d min: %d max: %d current: %d", devitem->ctrl_id, devitem->ctrl_minimum, devitem->ctrl_maximum, devitem->ctrl_currval);
         if ((method == 1) && (devitem->ctrl_id == V4L2_CID_BRIGHTNESS)) {
             device_value = devitem->ctrl_currval;
             parm_max = devitem->ctrl_maximum;
