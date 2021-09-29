@@ -428,6 +428,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
 
     for (indx = 0;indx < cnt->vdev->params_count; indx++) {
         usritem=&cnt->vdev->params_array[indx];
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Name: %s Value %s", usritem->param_name, usritem->param_value);
         if ((method == 1) &&
             ((mystrceq(usritem->param_name,"brightness")) ||
              (mystrceq(usritem->param_name,cid_bright)))) {
