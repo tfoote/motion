@@ -428,7 +428,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
 
     for (indx = 0;indx < cnt->vdev->params_count; indx++) {
         usritem=&cnt->vdev->params_array[indx];
-        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Name: %s Value %s", usritem->param_name, usritem->param_value);
+        // MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Name: %s Value %s", usritem->param_name, usritem->param_value);
         if ((method == 1) &&
             ((mystrceq(usritem->param_name,"brightness")) ||
              (mystrceq(usritem->param_name,cid_bright)))) {
@@ -447,7 +447,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
     device_value = -1;
     for (indx = 0;indx < curdev->devctrl_count; indx++) {
         devitem=&curdev->devctrl_array[indx];
-        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "id: %d min: %d max: %d current: %d", devitem->ctrl_id, devitem->ctrl_minimum, devitem->ctrl_maximum, devitem->ctrl_currval);
+        // MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "id: %d min: %d max: %d current: %d", devitem->ctrl_id, devitem->ctrl_minimum, devitem->ctrl_maximum, devitem->ctrl_currval);
         if ((method == 1) && (devitem->ctrl_id == V4L2_CID_BRIGHTNESS)) {
             device_value = devitem->ctrl_currval;
             parm_max = devitem->ctrl_maximum;
@@ -471,7 +471,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             }
         }
     }
-    MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Starting autobright logic device_value: %d min: %d max: %d",device_value, parm_min, parm_max);
+    // MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Starting autobright logic device_value: %d min: %d max: %d",device_value, parm_min, parm_max);
 
     /* If we can not find control just give up */
     if (device_value == -1) {
@@ -506,7 +506,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             device_value = parm_min;
             make_change = TRUE;
         }
-        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Down Avg %d step: %d device:%d",avg,step,device_value);
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Down Avg %d target: %d step: %d device:%d",avg,target, step,device_value);
     } else if (avg < window_low) {
         /* Average is below window - turn up exposure - go for the target. */
         step = MIN2((target - avg) / parm_damper + 1, parm_max - device_value);
