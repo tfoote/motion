@@ -517,7 +517,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             device_value = parm_max;
             make_change = TRUE;
         }
-        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Up Avg %d step: %d device:%d",avg,step,device_value);
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Up Avg %d target: %d step: %d device:%d",avg,target,step,device_value);
     }
 
     if (make_change) {
