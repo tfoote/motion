@@ -501,7 +501,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             device_value = parm_min;
             make_change = TRUE;
         }
-        //MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Down Avg %d step: %d device:%d",avg,step,device_value);
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Down Avg %d step: %d device:%d",avg,step,device_value);
     } else if (avg < window_low) {
         /* Average is below window - turn up exposure - go for the target. */
         step = MIN2((target - avg) / parm_damper + 1, parm_max - device_value);
@@ -512,7 +512,7 @@ static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int me
             device_value = parm_max;
             make_change = TRUE;
         }
-        //MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Up Avg %d step: %d device:%d",avg,step,device_value);
+        MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Up Avg %d step: %d device:%d",avg,step,device_value);
     }
 
     if (make_change) {
