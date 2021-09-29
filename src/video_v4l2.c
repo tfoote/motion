@@ -397,6 +397,9 @@ static int v4l2_parms_set(struct context *cnt, struct video_dev *curdev)
 static int v4l2_autobright(struct context *cnt, struct video_dev *curdev, int method)
 {
 
+    MOTION_LOG(INF, TYPE_VIDEO, NO_ERRNO, "Starting autobright");
+
+
     struct vid_devctrl_ctx  *devitem;
     struct params_item_ctx  *usritem;
     unsigned char           *image;
